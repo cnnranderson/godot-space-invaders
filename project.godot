@@ -15,12 +15,18 @@ _global_script_classes=[ {
 "path": "res://entities/Bullet.gd"
 }, {
 "base": "Area2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://entities/Enemy.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://entities/Player.gd"
 } ]
 _global_script_class_icons={
 "Bullet": "",
+"Enemy": "",
 "Player": ""
 }
 

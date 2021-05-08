@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/base_theme.tres" type="Theme" id=1]
+
+[node name="GUI" type="Control"]
+anchor_left = 0.000479269
+anchor_right = 1.00048
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="HBoxContainer" parent="."]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Counters" type="VBoxContainer" parent="Container"]
+margin_right = 74.0
+margin_bottom = 44.0
+
+[node name="ScoreCounter" type="HBoxContainer" parent="Container/Counters"]
+margin_right = 74.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="Container/Counters/ScoreCounter"]
+margin_right = 60.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 60, 0 )
+text = "Score:"
+valign = 1
+
+[node name="Number" type="Label" parent="Container/Counters/ScoreCounter"]
+margin_left = 64.0
+margin_right = 74.0
+margin_bottom = 20.0
+text = "0"
+align = 2
+valign = 1
+
+[node name="LiveCounter" type="HBoxContainer" parent="Container/Counters"]
+margin_top = 24.0
+margin_right = 74.0
+margin_bottom = 44.0
+
+[node name="Label" type="Label" parent="Container/Counters/LiveCounter"]
+margin_right = 60.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 60, 0 )
+text = "Lives:"
+valign = 1
+
+[node name="Number" type="Label" parent="Container/Counters/LiveCounter"]
+margin_left = 64.0
+margin_right = 74.0
+margin_bottom = 20.0
+text = "0"
+align = 2
+valign = 1

@@ -1,12 +1,15 @@
 extends Area2D
+class_name Enemy
 
 export var cur_speed = 50.0
 export var drop_distance = 50.0
+export var death_value = 50
 
 var left_bound = 40
 var right_bound = 600
 var dir = 1
 
+# Signals
 signal enemy_died
 
 func _process(delta):
@@ -21,14 +24,15 @@ func _process(delta):
 	position += movement
 	position.x = clamp(position.x, left_bound, right_bound)
 
-func kill():
-	emit_signal("enemy_died")
+func kill(gives_points):
+	emit_signal("enemy_died", death_value if gives_points else 0)
 	queue_free()
 
 func _on_Enemy_body_entered(body):
 	if body is Bullet:
-		kill()
+		kill(true)
 		body.hit()
 	
 	if body is Player:
-		get_tree().reload_current_scene()
+		body.player_died()
+		kill(false)

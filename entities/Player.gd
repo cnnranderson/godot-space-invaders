@@ -1,13 +1,17 @@
-extends Area2D
+extends KinematicBody2D
 class_name Player
 
-var Bullet = preload("res://entities/Bullet.tscn")
+const iBullet = preload("res://entities/Bullet.tscn")
 
 export var speed = 250.0
 export var bullet_wait_time = 200.0
 export var bullet_reload_speed = 200.0
+export var lives = 3
 
 var bullet_time = 0
+
+# Signals
+signal player_died(lives)
 
 func _process(delta):
 	_handle_input(delta)
@@ -31,10 +35,23 @@ func _handle_input(delta):
 	if Input.is_action_pressed("shoot") and bullet_time == 0:
 		_fire()
 
+func player_died():
+	lives -= 1
+	emit_signal("player_died", lives)
+	
+	if lives <= 0:
+		get_tree().reload_current_scene()
+
 # Fire a bullet
 func _fire():
 	bullet_time = bullet_wait_time
-	var bullet = Bullet.instance()
+	var bullet = iBullet.instance()
+	bullet.source = "player"
 	bullet.position = Vector2(position.x, position.y)
 	bullet.dir = -1
 	get_tree().root.get_node("Main").call_deferred("add_child", bullet)
+
+func _on_Player_body_entered(body):
+	if body is Bullet && body.source != "player":
+		player_died()
+		
