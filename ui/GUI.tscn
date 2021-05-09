@@ -3,31 +3,30 @@
 [ext_resource path="res://ui/base_theme.tres" type="Theme" id=1]
 
 [node name="GUI" type="Control"]
-anchor_left = 0.000479269
-anchor_right = 1.00048
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -20.0
 theme = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Container" type="HBoxContainer" parent="."]
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="Container" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Counters" type="VBoxContainer" parent="Container"]
-margin_right = 74.0
-margin_bottom = 44.0
+margin_right = 600.0
+margin_bottom = 440.0
 
 [node name="ScoreCounter" type="HBoxContainer" parent="Container/Counters"]
-margin_right = 74.0
+margin_right = 600.0
 margin_bottom = 20.0
 
 [node name="Label" type="Label" parent="Container/Counters/ScoreCounter"]
@@ -47,7 +46,7 @@ valign = 1
 
 [node name="LiveCounter" type="HBoxContainer" parent="Container/Counters"]
 margin_top = 24.0
-margin_right = 74.0
+margin_right = 600.0
 margin_bottom = 44.0
 
 [node name="Label" type="Label" parent="Container/Counters/LiveCounter"]
