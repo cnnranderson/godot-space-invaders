@@ -6,7 +6,7 @@ func _ready():
 	_spawn_enemy_row(50, 1)
 	_spawn_enemy_row(100, -1)
 	_spawn_enemy_row(150, 1)
-	_spawn_enemy_row(370, -1)
+	_spawn_enemy_row(250, -1)
 
 func _process(delta):
 	if Input.is_action_pressed("debug_quit"):

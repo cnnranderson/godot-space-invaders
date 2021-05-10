@@ -9,19 +9,24 @@
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="MarginContainer" type="Control" parent="."]
+[node name="BackgroundContainer" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 640.0
 margin_bottom = 480.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="BackgroundContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.392157, 0.352941, 0.27451, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Effects" type="Node2D" parent="."]
 
 [node name="Characters" type="Node2D" parent="."]
 

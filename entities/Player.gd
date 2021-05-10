@@ -49,7 +49,8 @@ func _fire():
 	bullet.source = "player"
 	bullet.position = Vector2(position.x, position.y)
 	bullet.dir = -1
-	get_tree().root.get_node("Main").call_deferred("add_child", bullet)
+	# get_tree().root.get_node("Main").call_deferred("add_child", bullet)
+	$"../../Effects".add_child(bullet)
 
 func _on_Player_body_entered(body):
 	if body is Bullet && body.source != "player":

@@ -3,7 +3,7 @@ class_name Bullet
 
 export var speed = 250.0
 export var dir = 1
-export var source = "na"
+export var source = "none"
 
 func _process(delta):
 	var move = Vector2.ZERO

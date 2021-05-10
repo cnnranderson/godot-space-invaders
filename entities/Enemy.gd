@@ -12,6 +12,9 @@ var dir = 1
 # Signals
 signal enemy_died
 
+func _ready():
+	$AnimatedSprite.play()
+
 func _process(delta):
 	var movement = Vector2.ZERO
 	
