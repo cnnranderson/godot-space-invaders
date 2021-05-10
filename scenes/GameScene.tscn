@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://ui/GUI.gd" type="Script" id=1]
+[ext_resource path="res://ui/GameGUI.gd" type="Script" id=1]
 [ext_resource path="res://GameManager.gd" type="Script" id=2]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://ui/GUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/GameGUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/PauseGUI.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node2D"]
@@ -33,10 +33,10 @@ __meta__ = {
 [node name="Player" parent="Characters" instance=ExtResource( 3 )]
 position = Vector2( 320, 420 )
 
-[node name="GUI" parent="." instance=ExtResource( 4 )]
+[node name="GameGUI" parent="." instance=ExtResource( 4 )]
 script = ExtResource( 1 )
 
 [node name="PauseGUI" parent="." instance=ExtResource( 5 )]
 visible = false
 
-[connection signal="player_died" from="Characters/Player" to="GUI" method="_on_Player_player_died"]
+[connection signal="player_died" from="Characters/Player" to="GameGUI" method="_on_Player_player_died"]

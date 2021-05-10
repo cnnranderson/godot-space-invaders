@@ -20,6 +20,6 @@ func _spawn_enemy_row(y, dir):
 		var enemy = Enemy.instance()
 		enemy.position = Vector2(150 + (50 * n), y)
 		enemy.dir = dir
-		enemy.connect("enemy_died", $GUI, "_on_Enemy_enemy_died")
+		enemy.connect("enemy_died", $GameGUI, "_on_Enemy_enemy_died")
 		$Characters.add_child(enemy)
 
