@@ -32,15 +32,16 @@ func _handle_input(delta):
 	# Shooting inputs
 	bullet_time -= bullet_reload_speed * delta
 	bullet_time = clamp(bullet_time, 0, bullet_wait_time)
+	
 	if Input.is_action_pressed("shoot") and bullet_time == 0:
 		_fire()
 
-func player_died():
+func player_hit():
 	lives -= 1
 	emit_signal("player_died", lives)
 	
 	if lives <= 0:
-		get_tree().reload_current_scene()
+		var _switch = get_tree().reload_current_scene()
 
 # Fire a bullet
 func _fire():
@@ -49,10 +50,12 @@ func _fire():
 	bullet.source = "player"
 	bullet.position = Vector2(position.x, position.y)
 	bullet.dir = -1
+	
 	# get_tree().root.get_node("Main").call_deferred("add_child", bullet)
+	# Still not sure how I feel about this
 	$"../../Effects".add_child(bullet)
 
 func _on_Player_body_entered(body):
 	if body is Bullet && body.source != "player":
-		player_died()
-		
+		player_hit()
+
