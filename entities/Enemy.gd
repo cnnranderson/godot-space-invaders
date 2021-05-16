@@ -37,5 +37,5 @@ func _on_Enemy_body_entered(body):
 		body.hit()
 	
 	if body is Player:
-		body.player_died()
+		body.player_hit()
 		kill(false)
