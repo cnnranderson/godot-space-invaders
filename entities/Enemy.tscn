@@ -20,7 +20,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 20.4432, 15.9595 )
+extents = Vector2( 14, 12 )
 
 [node name="Enemy" type="Area2D" groups=[
 "enemies",
@@ -28,12 +28,12 @@ extents = Vector2( 20.4432, 15.9595 )
 script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 4, 4 )
+scale = Vector2( 3, 3 )
 frames = SubResource( 3 )
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+position = Vector2( 0, 2 )
 shape = SubResource( 4 )
 
 [connection signal="body_entered" from="." to="." method="_on_Enemy_body_entered"]

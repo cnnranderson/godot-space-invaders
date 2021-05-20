@@ -4,6 +4,7 @@ class_name Enemy
 export var cur_speed = 50.0
 export var drop_distance = 50.0
 export var death_value = 50
+export var unique_path = false
 
 var left_bound = 40
 var right_bound = 600
@@ -16,6 +17,13 @@ func _ready():
 	$AnimatedSprite.play()
 
 func _process(delta):
+	# Short circuit movement code for now
+	if not unique_path:
+		return
+	else:
+		custom_movement(delta)
+
+func custom_movement(delta):
 	var movement = Vector2.ZERO
 	
 	if (position.x <= left_bound or position.x >= right_bound):
