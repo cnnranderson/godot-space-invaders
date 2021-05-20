@@ -18,6 +18,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Tween" type="Tween" parent="."]
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -104,5 +106,6 @@ text = "v0.2"
 align = 2
 valign = 2
 
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
 [connection signal="button_up" from="MarginContainer/MainContainer/ButtonContainer/PlayButton" to="." method="_on_PlayButton_button_up"]
 [connection signal="button_up" from="MarginContainer/MainContainer/ButtonContainer/QuitButton" to="." method="_on_QuitButton_button_up"]
