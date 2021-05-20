@@ -40,12 +40,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Effects" type="Node2D" parent="."]
+[node name="Enemies" type="Node2D" parent="."]
 
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="Player" parent="Characters" instance=ExtResource( 3 )]
 position = Vector2( 320, 420 )
+
+[node name="Effects" type="Node2D" parent="."]
 
 [node name="GameGUI" parent="." instance=ExtResource( 4 )]
 script = ExtResource( 1 )
