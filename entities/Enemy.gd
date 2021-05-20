@@ -1,6 +1,8 @@
 extends Area2D
 class_name Enemy
 
+const ExplosionSound = "res://sounds/explosion.wav"
+
 export var cur_speed = 50.0
 export var drop_distance = 50.0
 export var death_value = 50
@@ -17,7 +19,7 @@ func _ready():
 	$AnimatedSprite.play()
 
 func _process(delta):
-	# Short circuit movement code for now
+	# Short circuit movement code for now for new movement
 	if not unique_path:
 		return
 	else:
@@ -36,6 +38,7 @@ func custom_movement(delta):
 	position.x = clamp(position.x, left_bound, right_bound)
 
 func kill(gives_points):
+	$"/root/SoundManager".play_sound_2d(ExplosionSound, position)
 	emit_signal("enemy_died", death_value if gives_points else 0)
 	queue_free()
 

@@ -2,6 +2,8 @@ extends KinematicBody2D
 class_name Player
 
 const iBullet = preload("res://entities/Bullet.tscn")
+const LaserSound = "res://sounds/laser.wav"
+const PlayerExplosionSound = "res://sounds/player_explosion.wav"
 
 export var speed = 250.0
 export var bullet_wait_time = 200.0
@@ -38,6 +40,7 @@ func _handle_input(delta):
 
 func player_hit():
 	lives -= 1
+	$"/root/SoundManager".play_sound_2d(PlayerExplosionSound, position)
 	emit_signal("player_died", lives)
 	
 	if lives <= 0:
@@ -52,8 +55,10 @@ func _fire():
 	bullet.dir = -1
 	
 	# get_tree().root.get_node("Main").call_deferred("add_child", bullet)
-	# Still not sure how I feel about this
+	# Still not sure how I feel about this - if I change the parent/location of 
+	# the Player node, I could end up with annoying side effects.
 	$"../../Effects".add_child(bullet)
+	$"/root/SoundManager".play_sound_2d(LaserSound, position)
 
 func _on_Player_body_entered(body):
 	if body is Bullet && body.source != "player":
