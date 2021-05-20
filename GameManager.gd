@@ -8,9 +8,9 @@ var enemy_grid = []
 var wave_width = 8
 var wave_height = 4
 var wave_dir = 1
-var wave_speed = 20
-var limit_right = 600
-var limit_left = 40
+var wave_speed = 10
+var limit_right = 610
+var limit_left = 30
 var delay_move = false
 var delay_timer = .1
 var delay_move_countdown = delay_timer
@@ -37,16 +37,18 @@ func _process(delta):
 			delay_move_countdown = delay_timer
 			delay_move = false
 	elif is_dropping:
+		var dropped = false
 		for x in range(wave_width):
 			var e = enemy_grid[last_row_moved][x]
 			if is_instance_valid(e):
+				dropped = true
 				e.position.y += 20
 		last_row_moved += 1
 		if last_row_moved >= wave_height:
 			is_dropping = false
 			wave_dir = -wave_dir
 		else:
-			delay_move = true
+			delay_move = dropped
 	else:
 		for y in range(wave_height):
 			var max_left = limit_right
@@ -87,7 +89,9 @@ func _add_enemies():
 func _on_GameManager_enemy_died(value):
 	wave_speed += 2
 	enemy_count -= 1
-	if enemy_count <= 0:
+	if enemy_count == 1:
+		wave_speed = 300
+	elif enemy_count <= 0:
 		emit_signal("game_won")
 
 func _on_Main_game_won():
