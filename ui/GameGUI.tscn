@@ -33,13 +33,17 @@ margin_bottom = 20.0
 margin_right = 60.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 60, 0 )
-text = "Score:"
+custom_colors/font_color = Color( 0.796078, 0.819608, 0.745098, 1 )
+custom_colors/font_color_shadow = Color( 0.219608, 0.439216, 0.745098, 1 )
+text = "SCORE:"
 valign = 1
 
 [node name="Number" type="Label" parent="Container/Counters/ScoreCounter"]
 margin_left = 64.0
 margin_right = 74.0
 margin_bottom = 20.0
+custom_colors/font_color = Color( 0.796078, 0.819608, 0.745098, 1 )
+custom_colors/font_color_shadow = Color( 0.219608, 0.439216, 0.745098, 1 )
 text = "0"
 align = 2
 valign = 1
@@ -53,13 +57,17 @@ margin_bottom = 44.0
 margin_right = 60.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 60, 0 )
-text = "Lives:"
+custom_colors/font_color = Color( 0.796078, 0.819608, 0.745098, 1 )
+custom_colors/font_color_shadow = Color( 0.219608, 0.439216, 0.745098, 1 )
+text = "LIVES:"
 valign = 1
 
 [node name="Number" type="Label" parent="Container/Counters/LiveCounter"]
 margin_left = 64.0
 margin_right = 74.0
 margin_bottom = 20.0
+custom_colors/font_color = Color( 0.796078, 0.819608, 0.745098, 1 )
+custom_colors/font_color_shadow = Color( 0.219608, 0.439216, 0.745098, 1 )
 text = "0"
 align = 2
 valign = 1

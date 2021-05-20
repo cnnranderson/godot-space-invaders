@@ -6,9 +6,6 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
-extra_spacing_top = 8
-extra_spacing_bottom = 8
-extra_spacing_char = 6
 font_data = ExtResource( 3 )
 
 [node name="MainMenuGUI" type="Control"]
@@ -37,7 +34,7 @@ margin_right = 600.0
 margin_bottom = 440.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 1, 0.568627, 0, 1 )
+custom_colors/font_color = Color( 0.662745, 0.192157, 0.188235, 1 )
 text = "Space Invaders"
 align = 1
 uppercase = true
@@ -58,6 +55,8 @@ size_flags_vertical = 3
 margin_right = 197.0
 margin_bottom = 440.0
 size_flags_vertical = 5
+custom_colors/font_color = Color( 0.796078, 0.819608, 0.745098, 1 )
+custom_colors/font_color_shadow = Color( 0.219608, 0.439216, 0.745098, 1 )
 text = "New Stuff!"
 valign = 2
 
@@ -99,6 +98,8 @@ size_flags_vertical = 3
 margin_right = 198.0
 margin_bottom = 440.0
 size_flags_vertical = 5
+custom_colors/font_color = Color( 0.796078, 0.819608, 0.745098, 1 )
+custom_colors/font_color_shadow = Color( 0.219608, 0.439216, 0.745098, 1 )
 text = "v0.2"
 align = 2
 valign = 2
