@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24.0724, 9.27669 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="Area2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -17,3 +17,5 @@ texture = ExtResource( 1 )
 visible = false
 position = Vector2( 0, 10 )
 shape = SubResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]

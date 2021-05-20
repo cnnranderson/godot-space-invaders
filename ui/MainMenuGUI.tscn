@@ -72,21 +72,22 @@ custom_constants/separation = 18
 alignment = 1
 
 [node name="PlayButton" type="Button" parent="MarginContainer/MainContainer/ButtonContainer"]
-margin_top = 163.0
+margin_top = 185.0
 margin_right = 197.0
-margin_bottom = 189.0
+margin_bottom = 211.0
 text = "Play"
 
 [node name="ScoreButton" type="Button" parent="MarginContainer/MainContainer/ButtonContainer"]
+visible = false
 margin_top = 207.0
 margin_right = 197.0
 margin_bottom = 233.0
 text = "High Scores"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/MainContainer/ButtonContainer"]
-margin_top = 251.0
+margin_top = 229.0
 margin_right = 197.0
-margin_bottom = 277.0
+margin_bottom = 255.0
 text = "Quit"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/MainContainer"]

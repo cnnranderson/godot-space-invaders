@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Area2D
 class_name Player
 
 const iBullet = preload("res://entities/Bullet.tscn")
@@ -61,6 +61,6 @@ func _fire():
 	$"/root/SoundManager".play_sound_2d(LaserSound, position)
 
 func _on_Player_body_entered(body):
-	if body is Bullet && body.source != "player":
+	if body is Bullet and body.source != "player":
 		player_hit()
-
+		body.hit()

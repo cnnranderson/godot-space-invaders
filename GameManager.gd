@@ -1,6 +1,7 @@
 extends Node
 
-const Enemy := preload("res://entities/Enemy.tscn")
+const Enemy = preload("res://entities/Enemy.tscn")
+const Ufo = preload("res://entities/Ufo.tscn")
 
 signal game_won
 
@@ -20,8 +21,10 @@ var enemy_count = 0
 var is_dropping = false
 
 func _ready():
+	randomize()
+	$Enemies/UfoTimer.wait_time = randi() % 16 + 20
 	$YouWin.visible = false
-	_add_enemies()
+	_spawn_enemies()
 
 func _process(delta):
 	if Input.is_action_pressed("debug_quit"):
@@ -72,21 +75,26 @@ func _process(delta):
 					if is_instance_valid(e):
 						e.position.x += wave_speed * delta * wave_dir
 
-func _add_enemies():
+func _spawn_enemies():
 	# Setup enemies
 	for y in range(wave_height):
 		enemy_grid.append([])
 		for x in range(wave_width):
 			var enemy = Enemy.instance()
 			enemy.position = Vector2(150 + (50 * x), 180 - (40 * y))
-			enemy.dir = wave_dir
 			enemy.connect("enemy_died", $GameGUI, "_on_Enemy_enemy_died")
 			enemy.connect("enemy_died", self, "_on_GameManager_enemy_died")
 			enemy_grid[y].append(enemy)
 			$Enemies.add_child(enemy)
 			enemy_count += 1
 
-func _on_GameManager_enemy_died(value):
+func _spawn_ufo():
+	var ufo = Ufo.instance()
+	ufo.position = Vector2(-20, 30)
+	ufo.connect("enemy_died", $GameGUI, "_on_Enemy_enemy_died")
+	$Enemies.add_child(ufo)
+
+func _on_GameManager_enemy_died(_value):
 	wave_speed += 2
 	enemy_count -= 1
 	if enemy_count == 1:
@@ -96,3 +104,28 @@ func _on_GameManager_enemy_died(value):
 
 func _on_Main_game_won():
 	$YouWin.visible = true
+
+func _on_FireTimer_timeout():
+	# Only try to shoot if we have enemies
+	if enemy_count == 0:
+		return
+	
+	var bottom_enemies = []
+	var column_used = []
+	for y in range(wave_height):
+		for x in range(wave_width):
+			if not column_used.has(x):
+				var e = enemy_grid[y][x]
+				if is_instance_valid(e):
+					bottom_enemies.append(e)
+					column_used.append(x)
+	
+	if bottom_enemies.size() > 0:
+		var shooting_enemy = bottom_enemies[randi() % bottom_enemies.size()]
+		shooting_enemy.shoot()
+	$Enemies/FireTimer.start()
+
+func _on_UfoTimer_timeout():
+	_spawn_ufo()
+	$Enemies/UfoTimer.wait_time = randi() % 16 + 20
+	$Enemies/UfoTimer.start()

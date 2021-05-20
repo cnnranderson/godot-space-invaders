@@ -1,16 +1,13 @@
 extends Area2D
 class_name Enemy
 
+const iBullet = preload("res://entities/Bullet.tscn")
 const ExplosionSound = "res://sounds/explosion.wav"
+const LaserSound = "res://sounds/laser.wav"
 
 export var cur_speed = 50.0
-export var drop_distance = 50.0
 export var death_value = 50
 export var unique_path = false
-
-var left_bound = 40
-var right_bound = 600
-var dir = 1
 
 # Signals
 signal enemy_died
@@ -23,27 +20,29 @@ func _process(delta):
 	if not unique_path:
 		return
 	else:
-		custom_movement(delta)
+		_custom_movement(delta)
 
-func custom_movement(delta):
-	var movement = Vector2.ZERO
-	
-	if (position.x <= left_bound or position.x >= right_bound):
-		movement.y += drop_distance
-		dir = dir * -1
-	
-	movement.x += cur_speed * dir * delta
-	
-	position += movement
-	position.x = clamp(position.x, left_bound, right_bound)
+func _custom_movement(delta):
+	pass
 
 func kill(gives_points):
 	$"/root/SoundManager".play_sound_2d(ExplosionSound, position)
 	emit_signal("enemy_died", death_value if gives_points else 0)
 	queue_free()
 
+func shoot():
+	var bullet = iBullet.instance()
+	bullet.source = "enemy"
+	bullet.position = Vector2(position.x, position.y)
+	bullet.dir = 1
+	
+	# Still not sure how I feel about this - if I change the parent/location of 
+	# the Player node, I could end up with annoying side effects.
+	$"../../Effects".add_child(bullet)
+	$"/root/SoundManager".play_sound_2d(LaserSound, position)
+
 func _on_Enemy_body_entered(body):
-	if body is Bullet:
+	if body is Bullet and body.source != "enemy":
 		kill(true)
 		body.hit()
 	
