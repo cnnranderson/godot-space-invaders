@@ -36,6 +36,10 @@ config/name="Space Invaders"
 run/main_scene="res://scenes/MainMenuScene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+SoundManager="*res://utils/SoundManager.gd"
+
 [display]
 
 window/size/width=640
