@@ -5,6 +5,8 @@ const Ufo = preload("res://entities/Ufo.tscn")
 
 signal game_won
 
+# TODO: This all feels really messy and I should probably clean this up with a
+#       level manager or something more event driven (for future features).
 var enemy_grid = []
 var wave_width = 8
 var wave_height = 4
