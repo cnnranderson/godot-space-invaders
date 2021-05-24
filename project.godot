@@ -32,12 +32,13 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Space Invaders"
+config/name="Spice Invaders"
 run/main_scene="res://scenes/MainMenuScene.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
+GlobalManager="*res://utils/GlobalManager.gd"
 SoundManager="*res://utils/SoundManager.gd"
 
 [display]

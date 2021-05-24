@@ -21,18 +21,11 @@ var enemy_count = 0
 var is_dropping = false
 
 func _ready():
-	randomize()
 	$Enemies/UfoTimer.wait_time = randi() % 16 + 20
 	$YouWin.visible = false
 	_spawn_enemies()
 
 func _process(delta):
-	if Input.is_action_pressed("debug_quit"):
-		get_tree().quit()
-	
-	if Input.is_action_pressed("debug_restart"):
-		return get_tree().reload_current_scene()
-	
 	# Process enemy movement
 	if delay_move and is_dropping:
 		delay_move_countdown -= delta

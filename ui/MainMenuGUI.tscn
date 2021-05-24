@@ -20,7 +20,7 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="BaseContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
@@ -31,29 +31,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameName" type="Label" parent="MarginContainer"]
+[node name="GameName" type="Label" parent="BaseContainer"]
 margin_right = 600.0
 margin_bottom = 440.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.662745, 0.192157, 0.188235, 1 )
-text = "Space Invaders"
+text = "Spice Invaders"
 align = 1
 uppercase = true
 
-[node name="MainContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="MainContainer" type="HBoxContainer" parent="BaseContainer"]
 margin_right = 600.0
 margin_bottom = 440.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MainContainer"]
+[node name="UpdateNewsContainer" type="MarginContainer" parent="BaseContainer/MainContainer"]
 margin_right = 197.0
 margin_bottom = 440.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/MainContainer/MarginContainer"]
+[node name="Label" type="Label" parent="BaseContainer/MainContainer/UpdateNewsContainer"]
 margin_right = 197.0
 margin_bottom = 440.0
 size_flags_vertical = 5
@@ -61,8 +61,9 @@ custom_colors/font_color = Color( 0.796078, 0.819608, 0.745098, 1 )
 custom_colors/font_color_shadow = Color( 0.219608, 0.439216, 0.745098, 1 )
 text = "New Stuff!"
 valign = 2
+autowrap = true
 
-[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/MainContainer"]
+[node name="ButtonContainer" type="VBoxContainer" parent="BaseContainer/MainContainer"]
 margin_left = 201.0
 margin_right = 398.0
 margin_bottom = 440.0
@@ -71,33 +72,33 @@ size_flags_vertical = 3
 custom_constants/separation = 18
 alignment = 1
 
-[node name="PlayButton" type="Button" parent="MarginContainer/MainContainer/ButtonContainer"]
+[node name="PlayButton" type="Button" parent="BaseContainer/MainContainer/ButtonContainer"]
 margin_top = 185.0
 margin_right = 197.0
 margin_bottom = 211.0
 text = "Play"
 
-[node name="ScoreButton" type="Button" parent="MarginContainer/MainContainer/ButtonContainer"]
+[node name="ScoreButton" type="Button" parent="BaseContainer/MainContainer/ButtonContainer"]
 visible = false
 margin_top = 207.0
 margin_right = 197.0
 margin_bottom = 233.0
 text = "High Scores"
 
-[node name="QuitButton" type="Button" parent="MarginContainer/MainContainer/ButtonContainer"]
+[node name="QuitButton" type="Button" parent="BaseContainer/MainContainer/ButtonContainer"]
 margin_top = 229.0
 margin_right = 197.0
 margin_bottom = 255.0
 text = "Quit"
 
-[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/MainContainer"]
+[node name="VersionContainer" type="MarginContainer" parent="BaseContainer/MainContainer"]
 margin_left = 402.0
 margin_right = 600.0
 margin_bottom = 440.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/MainContainer/MarginContainer3"]
+[node name="Label" type="Label" parent="BaseContainer/MainContainer/VersionContainer"]
 margin_right = 198.0
 margin_bottom = 440.0
 size_flags_vertical = 5
@@ -108,5 +109,5 @@ align = 2
 valign = 2
 
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
-[connection signal="button_up" from="MarginContainer/MainContainer/ButtonContainer/PlayButton" to="." method="_on_PlayButton_button_up"]
-[connection signal="button_up" from="MarginContainer/MainContainer/ButtonContainer/QuitButton" to="." method="_on_QuitButton_button_up"]
+[connection signal="button_up" from="BaseContainer/MainContainer/ButtonContainer/PlayButton" to="." method="_on_PlayButton_button_up"]
+[connection signal="button_up" from="BaseContainer/MainContainer/ButtonContainer/QuitButton" to="." method="_on_QuitButton_button_up"]

@@ -4,9 +4,6 @@ func _process(delta):
 	if Input.is_action_just_pressed("pause"):
 		_pause(!get_tree().paused)
 	
-	if Input.is_action_pressed("debug_quit"):
-		get_tree().quit()
-
 func _pause(shouldPause):
 	get_tree().paused = shouldPause
 	visible = shouldPause
