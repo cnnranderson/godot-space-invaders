@@ -2,6 +2,7 @@ extends Area2D
 class_name Enemy
 
 const iBullet = preload("res://entities/Bullet.tscn")
+const iFloatingText = preload("res://ui/FloatingText.tscn")
 const ExplosionSound = "res://sounds/explosion.wav"
 const LaserSound = "res://sounds/laser.wav"
 
@@ -28,6 +29,11 @@ func _custom_movement(delta):
 func kill(gives_points):
 	$"/root/SoundManager".play_sound_2d(ExplosionSound, position)
 	emit_signal("enemy_died", death_value if gives_points else 0)
+	if gives_points:
+		var points = iFloatingText.instance()
+		points.amount = death_value
+		points.position = position
+		$"../../Effects".add_child(points)
 	queue_free()
 
 func shoot():

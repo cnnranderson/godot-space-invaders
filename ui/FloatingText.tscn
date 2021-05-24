@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/base_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/FloatingText.gd" type="Script" id=2]
+
+[node name="FloatingText" type="Position2D"]
+scale = Vector2( 0.7, 0.7 )
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -10.0
+margin_right = 15.0
+margin_bottom = 10.0
+grow_horizontal = 2
+theme = ExtResource( 1 )
+text = "000"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
