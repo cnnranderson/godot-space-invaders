@@ -37,7 +37,7 @@ margin_bottom = 440.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.662745, 0.192157, 0.188235, 1 )
-text = "Spice Invaders"
+text = "Space Invaders"
 align = 1
 uppercase = true
 

@@ -6,7 +6,7 @@ onready var title_tween = [game_name.rect_position.y, game_name.rect_position.y 
 
 var misc_titles = [
 	"New stuff!",
-	"Protect your spice!",
+	"Protect your space!",
 	"Campaign coming soon!",
 	"Paracausal mode coming soon!"
 ]
