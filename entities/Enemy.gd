@@ -10,9 +10,6 @@ export var cur_speed = 50.0
 export var death_value = 50
 export var unique_path = false
 
-# Signals
-signal enemy_died
-
 func _ready():
 	$AnimatedSprite.play()
 
@@ -28,7 +25,7 @@ func _custom_movement(delta):
 
 func kill(gives_points):
 	$"/root/SoundManager".play_sound_2d(ExplosionSound, position)
-	emit_signal("enemy_died", death_value if gives_points else 0)
+	EventManager.emit_signal("enemy_died", death_value if gives_points else 0)
 	if gives_points:
 		var points = iFloatingText.instance()
 		points.amount = death_value
@@ -51,7 +48,8 @@ func _on_Enemy_body_entered(body):
 	if body is Bullet and body.source != "enemy":
 		kill(true)
 		body.hit()
-	
-	if body is Player:
-		body.player_hit()
+
+
+func _on_Enemy_area_entered(area):
+	if area.is_in_group("player"):
 		kill(false)

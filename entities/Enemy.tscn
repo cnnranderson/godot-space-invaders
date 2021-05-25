@@ -23,7 +23,7 @@ animations = [ {
 extents = Vector2( 14, 12 )
 
 [node name="Enemy" type="Area2D" groups=[
-"enemies",
+"enemy",
 ]]
 script = ExtResource( 1 )
 
@@ -36,4 +36,5 @@ frame = 1
 position = Vector2( 0, 2 )
 shape = SubResource( 4 )
 
+[connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Enemy_body_entered"]

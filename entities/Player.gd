@@ -12,9 +12,6 @@ export var lives = 3
 
 var bullet_time = 0
 
-# Signals
-signal player_died(lives)
-
 func _process(delta):
 	_handle_input(delta)
 
@@ -41,7 +38,7 @@ func _handle_input(delta):
 func player_hit():
 	lives -= 1
 	$"/root/SoundManager".play_sound_2d(PlayerExplosionSound, position)
-	emit_signal("player_died", lives)
+	EventManager.emit_signal("player_died", lives)
 	
 	if lives <= 0:
 		var _switch = get_tree().reload_current_scene()
@@ -64,3 +61,7 @@ func _on_Player_body_entered(body):
 	if body is Bullet and body.source != "player":
 		player_hit()
 		body.hit()
+
+func _on_Player_area_entered(area):
+	if area.is_in_group("enemy"):
+		player_hit()

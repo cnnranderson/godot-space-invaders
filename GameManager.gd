@@ -3,8 +3,6 @@ extends Node
 const Enemy = preload("res://entities/Enemy.tscn")
 const Ufo = preload("res://entities/Ufo.tscn")
 
-signal game_won
-
 # TODO: This all feels really messy and I should probably clean this up with a
 #       level manager or something more event driven (for future features).
 var enemy_grid = []
@@ -77,8 +75,8 @@ func _spawn_enemies():
 		for x in range(wave_width):
 			var enemy = Enemy.instance()
 			enemy.position = Vector2(150 + (50 * x), 180 - (40 * y))
-			enemy.connect("enemy_died", $GameGUI, "_on_Enemy_enemy_died")
-			enemy.connect("enemy_died", self, "_on_GameManager_enemy_died")
+			EventManager.connect("enemy_died", $GameGUI, "_on_Enemy_enemy_died")
+			EventManager.connect("enemy_died", self, "_on_GameManager_enemy_died")
 			enemy_grid[y].append(enemy)
 			$Enemies.add_child(enemy)
 			enemy_count += 1
@@ -86,7 +84,7 @@ func _spawn_enemies():
 func _spawn_ufo():
 	var ufo = Ufo.instance()
 	ufo.position = Vector2(-20, 30)
-	ufo.connect("enemy_died", $GameGUI, "_on_Enemy_enemy_died")
+	EventManager.connect("enemy_died", $GameGUI, "_on_Enemy_enemy_died")
 	$Enemies.add_child(ufo)
 
 func _on_GameManager_enemy_died(_value):
@@ -95,7 +93,7 @@ func _on_GameManager_enemy_died(_value):
 	if enemy_count == 1:
 		wave_speed = 300
 	elif enemy_count <= 0:
-		emit_signal("game_won")
+		EventManager.emit_signal("game_won")
 
 func _on_Main_game_won():
 	$YouWin.visible = true

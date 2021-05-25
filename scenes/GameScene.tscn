@@ -72,7 +72,5 @@ script = ExtResource( 1 )
 [node name="PauseGUI" parent="." instance=ExtResource( 5 )]
 visible = false
 
-[connection signal="game_won" from="." to="." method="_on_Main_game_won"]
 [connection signal="timeout" from="Enemies/FireTimer" to="." method="_on_FireTimer_timeout"]
 [connection signal="timeout" from="Enemies/UfoTimer" to="." method="_on_UfoTimer_timeout"]
-[connection signal="player_died" from="Characters/Player" to="GameGUI" method="_on_Player_player_died"]
