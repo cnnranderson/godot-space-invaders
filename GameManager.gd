@@ -23,6 +23,7 @@ var is_dropping = false
 func _ready():
 	$Enemies/UfoTimer.wait_time = randi() % 16 + 20
 	$YouWin.visible = false
+	EventManager.connect("enemy_died", self, "_on_Enemy_enemy_died")
 	_spawn_enemies()
 
 func _process(delta):
@@ -75,19 +76,21 @@ func _spawn_enemies():
 		for x in range(wave_width):
 			var enemy = Enemy.instance()
 			enemy.position = Vector2(150 + (50 * x), 180 - (40 * y))
-			EventManager.connect("enemy_died", $GameGUI, "_on_Enemy_enemy_died")
-			EventManager.connect("enemy_died", self, "_on_GameManager_enemy_died")
 			enemy_grid[y].append(enemy)
-			$Enemies.add_child(enemy)
 			enemy_count += 1
+			$Enemies.add_child(enemy)
 
 func _spawn_ufo():
 	var ufo = Ufo.instance()
 	ufo.position = Vector2(-20, 30)
-	EventManager.connect("enemy_died", $GameGUI, "_on_Enemy_enemy_died")
 	$Enemies.add_child(ufo)
 
-func _on_GameManager_enemy_died(_value):
+func _on_Enemy_enemy_died(enemy_type, _value):
+	# UFOs shouldn't influence game pace -- just a bonus
+	if enemy_type == GlobalManager.EnemyType.UFO:
+		return
+	
+	# Modify game difficulty and progress of level
 	wave_speed += 2
 	enemy_count -= 1
 	if enemy_count == 1:

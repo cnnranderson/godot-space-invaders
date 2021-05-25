@@ -15,4 +15,4 @@ signal game_won
 signal player_died(lives)
 
 # Enemy signals
-signal enemy_died
+signal enemy_died(type, value)

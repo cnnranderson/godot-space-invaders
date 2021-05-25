@@ -10,6 +10,8 @@ export var cur_speed = 50.0
 export var death_value = 50
 export var unique_path = false
 
+var enemy_type = GlobalManager.EnemyType.ALIEN
+
 func _ready():
 	$AnimatedSprite.play()
 
@@ -24,8 +26,8 @@ func _custom_movement(delta):
 	pass
 
 func kill(gives_points):
-	$"/root/SoundManager".play_sound_2d(ExplosionSound, position)
-	EventManager.emit_signal("enemy_died", death_value if gives_points else 0)
+	SoundManager.play_sound_2d(SoundManager.SoundType.SFX, ExplosionSound, position)
+	EventManager.emit_signal("enemy_died", enemy_type, death_value if gives_points else 0)
 	if gives_points:
 		var points = iFloatingText.instance()
 		points.amount = death_value
@@ -42,7 +44,7 @@ func shoot():
 	# Still not sure how I feel about this - if I change the parent/location of 
 	# the Player node, I could end up with annoying side effects.
 	$"../../Effects".add_child(bullet)
-	$"/root/SoundManager".play_sound_2d(LaserSound, position)
+	SoundManager.play_sound_2d(SoundManager.SoundType.SFX, LaserSound, position)
 
 func _on_Enemy_body_entered(body):
 	if body is Bullet and body.source != "enemy":

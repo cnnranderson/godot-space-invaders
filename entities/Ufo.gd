@@ -1,5 +1,8 @@
 extends Enemy
 
+func _ready():
+	enemy_type = GlobalManager.EnemyType.UFO
+
 func _custom_movement(delta):
 	position.x += cur_speed * delta
 

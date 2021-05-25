@@ -37,7 +37,7 @@ func _handle_input(delta):
 
 func player_hit():
 	lives -= 1
-	$"/root/SoundManager".play_sound_2d(PlayerExplosionSound, position)
+	SoundManager.play_sound_2d(SoundManager.SoundType.SFX, PlayerExplosionSound, position)
 	EventManager.emit_signal("player_died", lives)
 	
 	if lives <= 0:
@@ -55,7 +55,7 @@ func _fire():
 	# Still not sure how I feel about this - if I change the parent/location of 
 	# the Player node, I could end up with annoying side effects.
 	$"../../Effects".add_child(bullet)
-	$"/root/SoundManager".play_sound_2d(LaserSound, position)
+	SoundManager.play_sound_2d(SoundManager.SoundType.SFX, LaserSound, position)
 
 func _on_Player_body_entered(body):
 	if body is Bullet and body.source != "player":
