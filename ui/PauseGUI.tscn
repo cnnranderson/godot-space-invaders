@@ -46,18 +46,18 @@ margin_right = 127.0
 margin_bottom = 26.0
 text = "Resume"
 
-[node name="QuitMenuButton" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
 margin_top = 44.0
 margin_right = 127.0
 margin_bottom = 70.0
-text = "Quit to Menu"
+text = "Settings"
 
-[node name="QuitButton" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
+[node name="QuitMenuButton" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
 margin_top = 88.0
 margin_right = 127.0
 margin_bottom = 114.0
-text = "Quit Game"
+text = "Quit to Menu"
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="button_up" from="MarginContainer/CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_button_up"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/QuitMenuButton" to="." method="_on_QuitMenuButton_pressed"]
-[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

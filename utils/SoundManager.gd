@@ -2,11 +2,12 @@ extends Node
 
 enum SoundType {SFX, MUSIC}
 
-func play_sound(sound: String):
+func play_sound(type, sound: String):
 	var player = AudioStreamPlayer.new()
 	player.stream = load(sound)
 	player.connect("finished", player, "queue_free")
 	add_child(player)
+	_set_volume(player, type)
 	player.play()
 
 func play_sound_2d(type, sound: String, pos: Vector2):
@@ -16,14 +17,15 @@ func play_sound_2d(type, sound: String, pos: Vector2):
 	player.stream = load(sound)
 	player.connect("finished", player, "queue_free")
 	add_child(player)
-	
+	_set_volume(player, type)
+	player.play()
+
+func _set_volume(player, type):
 	# Match volume to set level
 	match type:
 		SoundType.SFX:
-			player.volume_db = GlobalManager.options.sound_sfx
+			player.volume_db = linear2db(GlobalManager.options.volume_sfx / 100.0)
 		SoundType.MUSIC:
-			player.volume_db = GlobalManager.options.sound_music
+			player.volume_db = linear2db(GlobalManager.options.volume_music / 100.0)
 		_:
-			player.volume_db = GlobalManager.options.sound_music
-	
-	player.play()
+			player.volume_db = GlobalManager.options.volume_music

@@ -43,11 +43,19 @@ EventManager="*res://utils/EventManager.gd"
 SoundManager="*res://utils/SoundManager.gd"
 SaveManager="*res://utils/SaveManager.gd"
 
+[debug]
+
+gdscript/warnings/return_value_discarded=false
+
 [display]
 
 window/size/width=640
 window/size/height=480
 window/size/resizable=false
+
+[global]
+
+return=false
 
 [input]
 

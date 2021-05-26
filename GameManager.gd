@@ -7,7 +7,7 @@ const Ufo = preload("res://entities/Ufo.tscn")
 #       level manager or something more event driven (for future features).
 var enemy_grid = []
 var wave_width = 8
-var wave_height = 4
+var wave_height = 1
 var wave_dir = 1
 var wave_speed = 10
 var limit_right = 610
@@ -19,11 +19,14 @@ var all_rows_moved = true
 var last_row_moved = -1
 var enemy_count = 0
 var is_dropping = false
+var ufo_enabled = true
+var score = 0
 
 func _ready():
 	$Enemies/UfoTimer.wait_time = randi() % 16 + 20
 	$YouWin.visible = false
-	EventManager.connect("enemy_died", self, "_on_Enemy_enemy_died")
+	EventManager.connect("enemy_died", self, "_on_Event_enemy_died")
+	EventManager.connect("game_won", self, "_on_Event_game_won")
 	_spawn_enemies()
 
 func _process(delta):
@@ -85,7 +88,19 @@ func _spawn_ufo():
 	ufo.position = Vector2(-20, 30)
 	$Enemies.add_child(ufo)
 
-func _on_Enemy_enemy_died(enemy_type, _value):
+func _check_highscore():
+	var scores = GlobalManager.high_scores.duplicate()
+	scores.append(score)
+	scores.sort()
+	scores.invert()
+	for i in range(0, GlobalManager.high_scores.size()):
+		GlobalManager.high_scores[i] = scores[i]
+	SaveManager.save()
+
+func _on_Event_enemy_died(enemy_type, value):
+	# Add any possible points
+	score += value
+	
 	# UFOs shouldn't influence game pace -- just a bonus
 	if enemy_type == GlobalManager.EnemyType.UFO:
 		return
@@ -98,8 +113,10 @@ func _on_Enemy_enemy_died(enemy_type, _value):
 	elif enemy_count <= 0:
 		EventManager.emit_signal("game_won")
 
-func _on_Main_game_won():
+func _on_Event_game_won():
 	$YouWin.visible = true
+	ufo_enabled = false
+	_check_highscore()
 
 func _on_FireTimer_timeout():
 	# Only try to shoot if we have enemies
@@ -122,6 +139,9 @@ func _on_FireTimer_timeout():
 	$Enemies/FireTimer.start()
 
 func _on_UfoTimer_timeout():
-	_spawn_ufo()
-	$Enemies/UfoTimer.wait_time = randi() % 16 + 20
+	if ufo_enabled:
+		_spawn_ufo()
+		$Enemies/UfoTimer.wait_time = randi() % 16 + 20
+	else:
+		$Enemies/UfoTimer.wait_time = 3
 	$Enemies/UfoTimer.start()

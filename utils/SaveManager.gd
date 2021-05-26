@@ -30,6 +30,6 @@ func load():
 			GlobalManager.options = file.get_var()
 			file.close()
 	
-	print("Loaded")
 	print(GlobalManager.high_scores)
 	print(GlobalManager.options)
+	print("Loaded")

@@ -1,5 +1,8 @@
 extends Control
 
+const iSettings = preload("res://ui/SettingsMenuGUI.tscn")
+const iHighscores = preload("res://ui/HighscoresMenuGUI.tscn")
+
 onready var game_name = $BaseContainer/GameName
 onready var update_news = $BaseContainer/MainContainer/UpdateNewsContainer/Label
 onready var title_tween = [game_name.rect_position.y, game_name.rect_position.y + 10]
@@ -25,7 +28,15 @@ func _rotate_news():
 	update_news.text = misc_titles[randi() % misc_titles.size()]
 
 func _on_PlayButton_button_up():
-	var _switch = get_tree().change_scene("res://scenes/GameScene.tscn")
+	return get_tree().change_scene("res://scenes/GameScene.tscn")
+
+func _on_ScoreButton_button_up():
+	var highscores = iHighscores.instance()
+	get_tree().get_root().add_child(highscores)
+
+func _on_SettingsButton_button_up():
+	var settings = iSettings.instance()
+	get_tree().get_root().add_child(settings)
 
 func _on_QuitButton_button_up():
 	get_tree().quit()
