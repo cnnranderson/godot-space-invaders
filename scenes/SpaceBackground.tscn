@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://utils/SubdivideSprite.gd" type="Script" id=1]
+[ext_resource path="res://images/star_bg_large.png" type="Texture" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec2 Direction = vec2(-1.0, 0.0);
+uniform float Speed = 0.02;
+
+void fragment()
+{
+	COLOR = texture(TEXTURE, UV + (Direction * Speed * TIME));
+}
+
+void vertex()
+{
+	// Stretch entire y UV
+	VERTEX.y += UV.y * 100.0;
+	
+	// Apply curve
+	float height = 0.0015 * pow(VERTEX.x - 320.0, 2.0) - 100.0;
+	VERTEX.y += height;
+	VERTEX.x += UV.x * 320.0 - 160.0;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/Direction = Vector2( -1, 0 )
+shader_param/Speed = 0.02
+
+[node name="Space" type="Node2D"]
+pause_mode = 2
+material = SubResource( 2 )
+position = Vector2( 320, 240 )
+script = ExtResource( 1 )
+texture = ExtResource( 2 )
+resolution = 32
