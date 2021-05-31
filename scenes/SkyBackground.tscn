@@ -11,22 +11,28 @@ uniform float Speed = 0.02;
 
 void fragment()
 {
+	// Scroll the main texture horizontally
 	COLOR = texture(TEXTURE, UV + Direction * TIME * Speed);
-	vec4 norm = vec4(COLOR.r, COLOR.g, COLOR.b, 1);
+	
+	// Create the gradient for daytime sky colors
 	vec4 grad_1 = vec4(0.79, 0.96, 1.0, 1.0);
 	vec4 grad_2 = vec4(0.21, 0.84, 0.93, 1.0);
 	vec4 col = grad_1 + (UV.y * (grad_2 - grad_1));
+	
+	// Cycle between day/night over time
 	COLOR = col + (abs(sin(0.5 * TIME)) * (COLOR - col));
 }
 
 void vertex()
 {
-	// Stretch entire y UV
+	// Stretch vertical UV
 	VERTEX.y += UV.y * 100.0;
 	
 	// Apply curve
 	float height = 0.0015 * pow(VERTEX.x - 320.0, 2.0) - 100.0;
 	VERTEX.y += height;
+	
+	// Slightly stretch the horizontal UV
 	VERTEX.x += UV.x * 320.0 - 160.0;
 }"
 
