@@ -4,9 +4,9 @@
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/Direction = Vector2( -1, 0 )
+shader_param/Direction = Vector2( 0.25, -1 )
 shader_param/ScrollSpeed = 0.02
-shader_param/CycleSpeed = 0.5
+shader_param/CycleSpeed = 0.1
 shader_param/AutoCycle = true
 shader_param/Dusk_Gradient_Bottom = Plane( 0.87843, 0.64314, 0.43137, 1 )
 shader_param/Day_Gradient_Bottom = Plane( 0.08627, 0.02745, 0.07059, 1 )
