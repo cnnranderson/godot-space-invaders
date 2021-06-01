@@ -5,13 +5,13 @@
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/GameGUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/PauseGUI.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/SpaceBackground.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/SkyBackground.tscn" type="PackedScene" id=6]
 [ext_resource path="res://images/win.png" type="Texture" id=8]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Space" parent="." instance=ExtResource( 6 )]
+[node name="Sky" parent="." instance=ExtResource( 6 )]
 
 [node name="Enemies" type="Node2D" parent="."]
 

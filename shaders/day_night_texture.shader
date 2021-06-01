@@ -1,10 +1,4 @@
-[gd_scene load_steps=5 format=2]
-
-[ext_resource path="res://utils/SubdivideSprite.gd" type="Script" id=1]
-[ext_resource path="res://images/star_bg_large.png" type="Texture" id=2]
-
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
+shader_type canvas_item;
 
 uniform vec2 Direction = vec2(-1.0, 0.0);
 uniform float ScrollSpeed = 0.02;
@@ -43,24 +37,3 @@ void vertex()
 	// Slightly stretch the horizontal UV
 	VERTEX.x += UV.x * 320.0 - 160.0;
 }
-
-
-
-"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/Direction = Vector2( -1, 0 )
-shader_param/ScrollSpeed = 0.02
-shader_param/CycleSpeed = 0.5
-shader_param/AutoCycle = true
-shader_param/Dusk_Gradient_Bottom = Plane( 0.87843, 0.64314, 0.43137, 1 )
-shader_param/Day_Gradient_Bottom = Plane( 0.08627, 0.02745, 0.07059, 1 )
-shader_param/Day_Gradient_Top = Plane( 0.21961, 0.43922, 0.7451, 1 )
-
-[node name="Sky" type="Node2D"]
-material = SubResource( 2 )
-position = Vector2( 320, 240 )
-script = ExtResource( 1 )
-texture = ExtResource( 2 )
-resolution = 32
