@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://utils/SubdivideSprite.gd" type="Script" id=1]
+[ext_resource path="res://images/star_bg_large.png" type="Texture" id=2]
+[ext_resource path="res://shaders/GradientTextureCycleMaterial.tres" type="Material" id=3]
+
+[node name="Sky" type="Node2D"]
+pause_mode = 2
+material = ExtResource( 3 )
+position = Vector2( 320, 240 )
+script = ExtResource( 1 )
+texture = ExtResource( 2 )
+resolution = 32
