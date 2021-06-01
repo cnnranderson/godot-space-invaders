@@ -18,8 +18,8 @@ void fragment()
 	
 	// Create the gradient for daytime sky colors
 	vec4 col = vec4(0, 0, 0, 1);
-	col = Day_Gradient_Bottom + (UV.y * ((clamp(i_time, 0.0, 0.9) * Day_Gradient_Top) + ((1.0 - i_time) * Dusk_Gradient_Bottom)));
-	
+	//col = Day_Gradient_Bottom + (UV.y * ((clamp(i_time, 0.0, 0.9) * Day_Gradient_Top) + ((1.0 - i_time) * Dusk_Gradient_Bottom)));
+	col = Day_Gradient_Bottom + (UV.y * (Dusk_Gradient_Bottom + (i_time * (Day_Gradient_Top - Dusk_Gradient_Bottom))));
 	
 	// Cycle between day/night over time
 	COLOR -= (i_time * (COLOR - col));
