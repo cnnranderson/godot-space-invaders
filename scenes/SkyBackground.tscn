@@ -1,12 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://utils/SubdivideSprite.gd" type="Script" id=1]
 [ext_resource path="res://images/star_bg_large.png" type="Texture" id=2]
-[ext_resource path="res://shaders/GradientTextureCycleMaterial.tres" type="Material" id=3]
+[ext_resource path="res://shaders/day_night_texture.shader" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 3 )
+shader_param/Direction = Vector2( -1, 0 )
+shader_param/ScrollSpeed = 0.02
+shader_param/CycleSpeed = 0.2
+shader_param/AutoCycle = true
+shader_param/Dusk_Gradient_Bottom = Color( 0.87843, 0.64314, 0.43137, 1 )
+shader_param/Day_Gradient_Bottom = Color( 0.21961, 0.43922, 0.7451, 1 )
+shader_param/Day_Gradient_Top = Color( 0.08627, 0.02745, 0.07059, 1 )
 
 [node name="Sky" type="Node2D"]
 pause_mode = 2
-material = ExtResource( 3 )
+material = SubResource( 1 )
 position = Vector2( 320, 240 )
 script = ExtResource( 1 )
 texture = ExtResource( 2 )
