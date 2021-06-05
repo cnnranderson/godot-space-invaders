@@ -1,5 +1,6 @@
 tool
 extends Node2D
+class_name SubdivideSprite
 
 export(Texture) var texture setget set_texture, get_texture
 export var resolution = 4 setget set_resolution, get_resolution
@@ -15,7 +16,6 @@ func set_texture(tex):
 	texture = tex
 	update()
 
-
 func get_resolution():
 	return resolution
 
@@ -25,11 +25,9 @@ func set_resolution(res):
 	resolution = res
 	update()
 
-
 func set_debug_draw(dd):
 	debug_draw = dd
 	update()
-
 
 func _draw():
 	if texture == null:

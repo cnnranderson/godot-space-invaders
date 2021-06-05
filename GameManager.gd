@@ -6,8 +6,8 @@ const Ufo = preload("res://entities/Ufo.tscn")
 # TODO: This all feels really messy and I should probably clean this up with a
 #       level manager or something more event driven (for future features).
 var enemy_grid = []
-var wave_width = 8
-var wave_height = 1
+var wave_width = 10
+var wave_height = 6
 var wave_dir = 1
 var wave_speed = 10
 var limit_right = 610
@@ -28,6 +28,23 @@ func _ready():
 	EventManager.connect("enemy_died", self, "_on_Event_enemy_died")
 	EventManager.connect("game_won", self, "_on_Event_game_won")
 	_spawn_enemies()
+	_reset_sky()
+	_move_ground()
+
+func _reset_sky():
+	EventManager.emit_signal("daytime_change", 20, 4)
+
+func _move_ground():
+	$Tween.interpolate_property($Ground, "position:y",
+		$Ground.position.y + 50, $Ground.position.y, 2,
+		Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.interpolate_property($Characters/Player, "position:y",
+		$Characters/Player.position.y + 50, $Characters/Player.position.y, 2,
+		Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.interpolate_property($Sky.material, "shader_param/Direction",
+		Vector2(-1, 0), Vector2(-0.2, -1), 2,
+		Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.start()
 
 func _process(delta):
 	# Process enemy movement
@@ -78,7 +95,7 @@ func _spawn_enemies():
 		enemy_grid.append([])
 		for x in range(wave_width):
 			var enemy = Enemy.instance()
-			enemy.position = Vector2(150 + (50 * x), 180 - (40 * y))
+			enemy.position = Vector2(150 + (40 * x), 180 - (40 * y))
 			enemy_grid[y].append(enemy)
 			enemy_count += 1
 			$Enemies.add_child(enemy)
@@ -145,3 +162,12 @@ func _on_UfoTimer_timeout():
 	else:
 		$Enemies/UfoTimer.wait_time = 3
 	$Enemies/UfoTimer.start()
+
+func _on_DayTimer_timeout():
+	var new_time = GlobalManager.time_of_day + 2
+	if new_time > 24:
+		EventManager.emit_signal("daytime_change", 0, 0)
+	else:
+		EventManager.emit_signal("daytime_change", new_time, 6)
+	
+	$Timers/DayTimer.wait_time = 6

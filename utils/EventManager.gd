@@ -10,6 +10,7 @@ connecting signal subscribers.
 
 # Core Game signals
 signal game_won
+signal daytime_change(time, delay)
 
 # Player signals
 signal player_died(lives)

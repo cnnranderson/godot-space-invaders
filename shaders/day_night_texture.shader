@@ -1,9 +1,10 @@
 shader_type canvas_item;
+const float PI = 3.14159265358979323846;
 
 uniform vec2 Direction = vec2(-1.0, 0.0);
 uniform float ScrollSpeed : hint_range(0.0, 1.0) = 0.02;
 uniform float CycleSpeed : hint_range(0.0, 3.0) = 0.2;
-uniform bool AutoCycle = true;
+uniform float TimeOfDay : hint_range(0, 24.0) = 0;
 uniform vec4 Dusk_Gradient_Bottom : hint_color = vec4(0.87843, 0.64314, 0.43137, 1.0);
 uniform vec4 Day_Gradient_Bottom : hint_color = vec4(0.21961, 0.43922, 0.74510, 1.0); //vec4(0.21, 0.84, 0.93, 1.0);
 uniform vec4 Day_Gradient_Top : hint_color = vec4(0.08627, 0.02745, 0.07059, 1.0); //vec4(0.79, 0.96, 1.0, 1.0);
@@ -11,7 +12,7 @@ uniform vec4 Day_Gradient_Top : hint_color = vec4(0.08627, 0.02745, 0.07059, 1.0
 void fragment()
 {
 	// Calc the current gradient time
-	float i_time = abs(sin(CycleSpeed * TIME));
+	float i_time = abs(sin(TimeOfDay / 24.0 * PI));
 	
 	// Scroll the main texture horizontally
 	COLOR = texture(TEXTURE, UV + Direction * ScrollSpeed * TIME);

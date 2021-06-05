@@ -5,7 +5,7 @@ const iBullet = preload("res://entities/Bullet.tscn")
 const LaserSound = "res://sounds/laser.wav"
 const PlayerExplosionSound = "res://sounds/player_explosion.wav"
 
-export var speed = 250.0
+export var speed = 200.0
 export var bullet_wait_time = 200.0
 export var bullet_reload_speed = 200.0
 export var lives = 3

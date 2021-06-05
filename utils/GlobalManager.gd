@@ -9,6 +9,8 @@ onready var options = {
 
 onready var high_scores = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
+onready var time_of_day = 0.0;
+
 func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	SaveManager.load()

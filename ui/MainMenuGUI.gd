@@ -17,6 +17,7 @@ var misc_titles = [
 func _ready():
 	_tween_title()
 	_rotate_news()
+	EventManager.emit_signal("daytime_change", 0, 2)
 
 func _tween_title():
 	$Tween.interpolate_property(game_name, "rect_position:y",

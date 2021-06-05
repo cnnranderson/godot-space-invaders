@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://entities/Player.gd"
+}, {
+"base": "Node2D",
+"class": "SubdivideSprite",
+"language": "GDScript",
+"path": "res://utils/SubdivideSprite.gd"
 } ]
 _global_script_class_icons={
 "Bullet": "",
 "Enemy": "",
-"Player": ""
+"Player": "",
+"SubdivideSprite": ""
 }
 
 [application]
@@ -52,10 +58,20 @@ gdscript/warnings/return_value_discarded=false
 window/size/width=640
 window/size/height=480
 window/size/resizable=false
+window/size/always_on_top=true
+window/size/test_width=960
+window/size/test_height=720
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [global]
 
 return=false
+
+[gui]
+
+theme/use_hidpi=true
+theme/custom="res://ui/base_theme.tres"
 
 [input]
 
@@ -97,3 +113,8 @@ pause={
 [physics]
 
 common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
