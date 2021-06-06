@@ -32,7 +32,7 @@ func _ready():
 	_move_ground()
 
 func _reset_sky():
-	EventManager.emit_signal("daytime_change", 20, 4)
+	EventManager.emit_signal("daytime_change", 12, 2)
 
 func _move_ground():
 	$Tween.interpolate_property($Ground, "position:y",
@@ -40,9 +40,6 @@ func _move_ground():
 		Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.interpolate_property($Characters/Player, "position:y",
 		$Characters/Player.position.y + 50, $Characters/Player.position.y, 2,
-		Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	$Tween.interpolate_property($Sky.material, "shader_param/Direction",
-		Vector2(-1, 0), Vector2(-0.2, -1), 2,
 		Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()
 

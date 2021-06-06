@@ -24,8 +24,8 @@ func _set_volume(player, type):
 	# Match volume to set level
 	match type:
 		SoundType.SFX:
-			player.volume_db = linear2db(GlobalManager.options.volume_sfx / 100.0)
+			player.volume_db = linear2db(GlobalManager.audio.sfx / 100.0)
 		SoundType.MUSIC:
-			player.volume_db = linear2db(GlobalManager.options.volume_music / 100.0)
+			player.volume_db = linear2db(GlobalManager.audio.music / 100.0)
 		_:
-			player.volume_db = GlobalManager.options.volume_music
+			player.volume_db = linear2db(GlobalManager.audio.music / 100.0)
