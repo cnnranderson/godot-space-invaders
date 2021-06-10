@@ -39,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Space Invaders"
-run/main_scene="res://scenes/MainMenuScene.tscn"
+run/main_scene="res://scenes/main/MainScene.tscn"
 config/icon="res://icon.png"
 
 [autoload]
