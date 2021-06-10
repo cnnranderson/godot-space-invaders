@@ -9,5 +9,5 @@ func _ready():
 		score_record.text = "%d : %d" % [i + 1, Global.high_scores[i]]
 		score_list.add_child(score_record)
 
-func _on_CloseButton_button_up():
-	queue_free()
+func _on_CloseButton_pressed():
+	Global.main.load_scene(Global.main.Scenes.START_MENU)

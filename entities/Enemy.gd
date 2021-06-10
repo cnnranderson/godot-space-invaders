@@ -10,7 +10,7 @@ export var cur_speed = 50.0
 export var death_value = 50
 export var unique_path = false
 
-var enemy_type = GlobalManager.EnemyType.ALIEN
+var enemy_type = Global.EnemyType.ALIEN
 
 func _ready():
 	$AnimatedSprite.play()

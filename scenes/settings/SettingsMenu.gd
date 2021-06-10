@@ -1,10 +1,10 @@
 extends Control
 
-onready var saved_label = $SettingsContainer/ActionButtons/SavedLabel
-onready var music_label = $SettingsContainer/Settings/Music/MusicLabel
-onready var music_slider = $SettingsContainer/Settings/Music/MusicSlider
-onready var sfx_label = $SettingsContainer/Settings/Sfx/SfxLabel
-onready var sfx_slider = $SettingsContainer/Settings/Sfx/SfxSlider
+onready var saved_label = $Container/ActionButtons/SavedLabel
+onready var music_label = $Container/Settings/Music/MusicLabel
+onready var music_slider = $Container/Settings/Music/MusicSlider
+onready var sfx_label = $Container/Settings/Sfx/SfxLabel
+onready var sfx_slider = $Container/Settings/Sfx/SfxSlider
 
 var volume_label = "{type} Volume: ({val}%)"
 
@@ -18,12 +18,12 @@ func _on_MusicSlider_value_changed(value):
 func _on_SfxSlider_value_changed(value):
 	sfx_label.text = volume_label.format({"type": "Sfx", "val": "%0*d" % [2, value]})
 
-func _on_SaveButton_button_up():
+func _on_SaveButton_pressed():
 	Global.audio.music = music_slider.value
 	Global.audio.sfx = sfx_slider.value
 	SaveManager.save_settings()
 	$Tween.interpolate_property(saved_label, "modulate:a", 1, 0, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
 
-func _on_CloseButton_button_up():
-	queue_free()
+func _on_CloseButton_pressed():
+	Global.main.show_settings(false)

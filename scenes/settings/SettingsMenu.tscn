@@ -1,21 +1,19 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://ui/base_theme.tres" type="Theme" id=1]
-[ext_resource path="res://ui/SettingsMenuGUI.gd" type="Script" id=2]
-[ext_resource path="res://fonts/romulus.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://fonts/romulus.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/base_theme.tres" type="Theme" id=2]
+[ext_resource path="res://scenes/settings/SettingsMenu.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
-font_data = ExtResource( 3 )
+font_data = ExtResource( 1 )
 
-[node name="SettingsMenuGUI" type="Control"]
+[node name="SettingsMenu" type="Control"]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 640, 480 )
-rect_pivot_offset = Vector2( -368.353, -6.04575 )
-theme = ExtResource( 1 )
-script = ExtResource( 2 )
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -30,7 +28,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SettingsContainer" type="MarginContainer" parent="."]
+[node name="Container" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 40.0
@@ -42,7 +40,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="SettingsContainer"]
+[node name="Label" type="Label" parent="Container"]
 margin_left = 228.0
 margin_right = 332.0
 margin_bottom = 28.0
@@ -52,7 +50,7 @@ custom_fonts/font = SubResource( 1 )
 text = "Settings"
 align = 1
 
-[node name="Settings" type="VBoxContainer" parent="SettingsContainer"]
+[node name="Settings" type="VBoxContainer" parent="Container"]
 margin_top = 158.0
 margin_right = 560.0
 margin_bottom = 242.0
@@ -61,11 +59,11 @@ size_flags_vertical = 4
 custom_constants/separation = 20
 alignment = 1
 
-[node name="Music" type="HBoxContainer" parent="SettingsContainer/Settings"]
+[node name="Music" type="HBoxContainer" parent="Container/Settings"]
 margin_right = 560.0
 margin_bottom = 32.0
 
-[node name="MusicLabel" type="Label" parent="SettingsContainer/Settings/Music"]
+[node name="MusicLabel" type="Label" parent="Container/Settings/Music"]
 margin_right = 276.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
@@ -75,7 +73,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MusicSlider" type="HSlider" parent="SettingsContainer/Settings/Music"]
+[node name="MusicSlider" type="HSlider" parent="Container/Settings/Music"]
 margin_left = 284.0
 margin_right = 560.0
 margin_bottom = 32.0
@@ -86,12 +84,12 @@ rounded = true
 tick_count = 5
 ticks_on_borders = true
 
-[node name="Sfx" type="HBoxContainer" parent="SettingsContainer/Settings"]
+[node name="Sfx" type="HBoxContainer" parent="Container/Settings"]
 margin_top = 52.0
 margin_right = 560.0
 margin_bottom = 84.0
 
-[node name="SfxLabel" type="Label" parent="SettingsContainer/Settings/Sfx"]
+[node name="SfxLabel" type="Label" parent="Container/Settings/Sfx"]
 margin_right = 276.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
@@ -101,7 +99,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SfxSlider" type="HSlider" parent="SettingsContainer/Settings/Sfx"]
+[node name="SfxSlider" type="HSlider" parent="Container/Settings/Sfx"]
 margin_left = 284.0
 margin_right = 560.0
 margin_bottom = 32.0
@@ -112,7 +110,7 @@ rounded = true
 tick_count = 5
 ticks_on_borders = true
 
-[node name="ActionButtons" type="VBoxContainer" parent="SettingsContainer"]
+[node name="ActionButtons" type="VBoxContainer" parent="Container"]
 margin_top = 296.0
 margin_right = 560.0
 margin_bottom = 400.0
@@ -121,14 +119,14 @@ size_flags_vertical = 8
 custom_constants/separation = 10
 alignment = 1
 
-[node name="SavedLabel" type="Label" parent="SettingsContainer/ActionButtons"]
+[node name="SavedLabel" type="Label" parent="Container/ActionButtons"]
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 560.0
 margin_bottom = 20.0
 text = "Saved!"
 align = 1
 
-[node name="SaveButton" type="Button" parent="SettingsContainer/ActionButtons"]
+[node name="SaveButton" type="Button" parent="Container/ActionButtons"]
 margin_left = 247.0
 margin_top = 30.0
 margin_right = 313.0
@@ -136,7 +134,7 @@ margin_bottom = 62.0
 size_flags_horizontal = 4
 text = "Save"
 
-[node name="CloseButton" type="Button" parent="SettingsContainer/ActionButtons"]
+[node name="CloseButton" type="Button" parent="Container/ActionButtons"]
 margin_left = 245.0
 margin_top = 72.0
 margin_right = 315.0
@@ -145,7 +143,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Close"
 
-[connection signal="value_changed" from="SettingsContainer/Settings/Music/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
-[connection signal="value_changed" from="SettingsContainer/Settings/Sfx/SfxSlider" to="." method="_on_SfxSlider_value_changed"]
-[connection signal="button_up" from="SettingsContainer/ActionButtons/SaveButton" to="." method="_on_SaveButton_button_up"]
-[connection signal="button_up" from="SettingsContainer/ActionButtons/CloseButton" to="." method="_on_CloseButton_button_up"]
+[connection signal="value_changed" from="Container/Settings/Music/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
+[connection signal="value_changed" from="Container/Settings/Sfx/SfxSlider" to="." method="_on_SfxSlider_value_changed"]
+[connection signal="pressed" from="Container/ActionButtons/SaveButton" to="." method="_on_SaveButton_pressed"]
+[connection signal="pressed" from="Container/ActionButtons/CloseButton" to="." method="_on_CloseButton_pressed"]

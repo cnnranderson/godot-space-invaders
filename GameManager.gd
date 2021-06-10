@@ -103,12 +103,12 @@ func _spawn_ufo():
 	$Enemies.add_child(ufo)
 
 func _check_highscore():
-	var scores = GlobalManager.high_scores.duplicate()
+	var scores = Global.high_scores.duplicate()
 	scores.append(score)
 	scores.sort()
 	scores.invert()
-	for i in range(0, GlobalManager.high_scores.size()):
-		GlobalManager.high_scores[i] = scores[i]
+	for i in range(0, Global.high_scores.size()):
+		Global.high_scores[i] = scores[i]
 	SaveManager.save()
 
 func _on_Event_enemy_died(enemy_type, value):
@@ -116,7 +116,7 @@ func _on_Event_enemy_died(enemy_type, value):
 	score += value
 	
 	# UFOs shouldn't influence game pace -- just a bonus
-	if enemy_type == GlobalManager.EnemyType.UFO:
+	if enemy_type == Global.EnemyType.UFO:
 		return
 	
 	# Modify game difficulty and progress of level
@@ -161,7 +161,7 @@ func _on_UfoTimer_timeout():
 	$Enemies/UfoTimer.start()
 
 func _on_DayTimer_timeout():
-	var new_time = GlobalManager.time_of_day + 2
+	var new_time = Global.time_of_day + 2
 	if new_time > 24:
 		EventManager.emit_signal("daytime_change", 0, 0)
 	else:

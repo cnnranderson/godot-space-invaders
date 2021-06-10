@@ -6,9 +6,6 @@ export(Texture) var texture setget set_texture, get_texture
 export var resolution = 4 setget set_resolution, get_resolution
 export var debug_draw = false setget set_debug_draw
 
-func _process(delta):
-	VisualServer.set_shader_time_scale(0.0 if get_tree().paused else 1.0)
-
 func get_texture():
 	return texture
 

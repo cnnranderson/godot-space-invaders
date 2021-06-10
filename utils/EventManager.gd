@@ -11,6 +11,7 @@ connecting signal subscribers.
 # Core Game signals
 signal game_won
 signal daytime_change(time, delay)
+signal daytime_pause(should_pause)
 
 # Player signals
 signal player_died(lives)

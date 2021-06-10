@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://shaders/day_night_texture.shader" type="Shader" id=1]
+[ext_resource path="res://scenes/SkyBackground.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/main/MainScene.gd" type="Script" id=3]
+[ext_resource path="res://scenes/pause/PauseMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/settings/SettingsMenu.tscn" type="PackedScene" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/Direction = Vector2( -1, 0 )
+shader_param/ScrollSpeed = 0.02
+shader_param/CycleSpeed = 0.2
+shader_param/TimeOfDay = 0.0
+shader_param/Dusk_Gradient_Bottom = Color( 0.87843, 0.64314, 0.43137, 1 )
+shader_param/Day_Gradient_Bottom = Color( 0.21961, 0.43922, 0.7451, 1 )
+shader_param/Day_Gradient_Top = Color( 0.08627, 0.02745, 0.07059, 1 )
+
+[node name="Main" type="Node2D"]
+pause_mode = 1
+script = ExtResource( 3 )
+
+[node name="BgSky" parent="." instance=ExtResource( 2 )]
+material = SubResource( 1 )
+
+[node name="Scene" type="Node2D" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="MenuLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="MenuLayer" instance=ExtResource( 4 )]
+visible = false
+
+[node name="SettingsMenu" parent="MenuLayer" instance=ExtResource( 5 )]
+visible = false
