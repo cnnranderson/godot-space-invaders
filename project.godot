@@ -45,7 +45,6 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://utils/Global.gd"
-GlobalManager="*res://utils/GlobalManager.gd"
 EventManager="*res://utils/EventManager.gd"
 SoundManager="*res://utils/SoundManager.gd"
 SaveManager="*res://utils/SaveManager.gd"

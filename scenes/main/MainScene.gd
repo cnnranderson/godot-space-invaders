@@ -29,11 +29,12 @@ func load_scene(scene):
 	
 	# Unpause the tree to continue with the scene
 	get_tree().paused = false
-	print("FINISHED LOADING Scene: %s" % scene)
 
 func show_pause(visible: bool):
+	print("SHOW PAUSE: %s" % visible)
 	get_tree().paused = visible
 	$MenuLayer/PauseMenu.visible = visible
 
 func show_settings(visible: bool):
+	print("SHOW SETTINGS: %s" % visible)
 	$MenuLayer/SettingsMenu.visible = visible
