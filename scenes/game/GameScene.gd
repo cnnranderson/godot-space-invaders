@@ -1,19 +1,19 @@
 extends Node2D
 
-var current_level : Level = null
+var level
 
 func _ready():
 	# Make sure we have everything ready
-	assert(Global.main and Global.main.selected_level)
+	assert(Global.main and Global.main.curr_level)
 	_init_level()
-	
-	$Enemies/UfoTimer.wait_time = randi() % 16 + 20
 	$YouWin.visible = false
+	EventManager.connect("game_won", self, "_Event_game_won")
 
 func _input(event):
 	if Input.is_action_just_pressed("pause"):
 		Global.main.show_pause(!get_tree().paused)
 
 func _init_level():
-	current_level = Global.main.selected_level
-	current_level.init()
+	level = load(Global.main.curr_level)
+	$Level.add_child(level)
+

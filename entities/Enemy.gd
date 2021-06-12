@@ -1,7 +1,7 @@
 extends Area2D
 class_name Enemy
 
-const iBullet = preload("res://entities/Bullet.tscn")
+const _Bullet = preload("res://entities/Bullet.tscn")
 const iFloatingText = preload("res://ui/FloatingText.tscn")
 const ExplosionSound = "res://sounds/explosion.wav"
 const LaserSound = "res://sounds/laser.wav"
@@ -36,7 +36,7 @@ func kill(gives_points):
 	queue_free()
 
 func shoot():
-	var bullet = iBullet.instance()
+	var bullet = _Bullet.instance()
 	bullet.source = "enemy"
 	bullet.position = Vector2(position.x, position.y)
 	bullet.dir = 1

@@ -1,7 +1,7 @@
 extends Area2D
 class_name Player
 
-const iBullet = preload("res://entities/Bullet.tscn")
+const _Bullet = preload("res://entities/Bullet.tscn")
 const LaserSound = "res://sounds/laser.wav"
 const PlayerExplosionSound = "res://sounds/player_explosion.wav"
 
@@ -46,7 +46,7 @@ func player_hit():
 # Fire a bullet
 func _fire():
 	bullet_time = bullet_wait_time
-	var bullet = iBullet.instance()
+	var bullet = _Bullet.instance()
 	bullet.source = "player"
 	bullet.position = Vector2(position.x, position.y)
 	bullet.dir = -1
@@ -54,7 +54,7 @@ func _fire():
 	# get_tree().root.get_node("Main").call_deferred("add_child", bullet)
 	# Still not sure how I feel about this - if I change the parent/location of 
 	# the Player node, I could end up with annoying side effects.
-	$"../../Effects".add_child(bullet)
+	$"../Effects".add_child(bullet)
 	SoundManager.play_sound_2d(SoundManager.SoundType.SFX, LaserSound, position)
 
 func _on_Player_body_entered(body):

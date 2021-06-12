@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Bullet
 
-const iExplosion = preload("res://entities/Explosion.tscn")
+const _Explosion = preload("res://entities/Explosion.tscn")
 
 export var speed = 250.0
 export var dir = 1
@@ -13,7 +13,7 @@ func _process(delta):
 	position += move
 
 func hit():
-	var explosion = iExplosion.instance()
+	var explosion = _Explosion.instance()
 	explosion.position = position
 	get_parent().add_child(explosion)
 	queue_free()

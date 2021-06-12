@@ -1,7 +1,7 @@
 extends Node2D
 
 var curr_scene = Global.Scenes.START_MENU
-var selected_level : Level = Level.new()
+var curr_level = Global.Levels.TEST_LEVEL
 
 func _ready():
 	Global.main = self
@@ -21,6 +21,25 @@ func load_scene(scene):
 		children[0].queue_free()
 	var new_scene = load(Global.SceneMap[scene]).instance()
 	curr_scene = scene
+	$Scene.add_child(new_scene)
+	
+	# Unpause the tree to continue with the scene
+	get_tree().paused = false
+
+func load_level(level):
+	assert(level in Global.Levels.values())
+	
+	# Pause any happenings
+	get_tree().paused = true
+	
+	# Load the new scene and set the new level
+	print("LOADING Level: %s" % level)
+	var children = $Scene.get_children()
+	if not children.empty():
+		children[0].queue_free()
+	var new_scene = load(Global.SceneMap[Global.Scenes.GAME]).instance()
+	curr_level = level
+	curr_scene = Global.Scenes.GAME
 	$Scene.add_child(new_scene)
 	
 	# Unpause the tree to continue with the scene
