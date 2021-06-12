@@ -53,3 +53,7 @@ margin_top = 100.0
 margin_right = 139.0
 margin_bottom = 132.0
 text = "Quit to Menu"
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/QuitMenuButton" to="." method="_on_QuitMenuButton_pressed"]

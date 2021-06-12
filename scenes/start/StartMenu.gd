@@ -30,10 +30,10 @@ func _on_Tween_tween_completed(object, key):
 	_tween_title()
 
 func _on_PlayButton_pressed():
-	return get_tree().change_scene("res://scenes/GameScene.tscn")
+	Global.main.load_scene(Global.Scenes.GAME)
 
 func _on_ScoreButton_pressed():
-	Global.main.load_scene(Global.main.Scenes.HIGH_SCORES)
+	Global.main.load_scene(Global.Scenes.HIGH_SCORES)
 
 func _on_SettingsButton_pressed():
 	Global.main.show_settings(true)

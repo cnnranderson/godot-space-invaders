@@ -10,4 +10,4 @@ func _ready():
 		score_list.add_child(score_record)
 
 func _on_CloseButton_pressed():
-	Global.main.load_scene(Global.main.Scenes.START_MENU)
+	Global.main.load_scene(Global.Scenes.START_MENU)

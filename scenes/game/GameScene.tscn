@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/GameGUI.gd" type="Script" id=1]
+[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/GameGUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://images/win.png" type="Texture" id=5]
+[ext_resource path="res://scenes/game/GameScene.gd" type="Script" id=6]
+
+[node name="GameScene" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 6 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="FireTimer" type="Timer" parent="Enemies"]
+wait_time = 4.0
+autostart = true
+
+[node name="UfoTimer" type="Timer" parent="Enemies"]
+wait_time = 10.0
+autostart = true
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="Player" parent="Characters" instance=ExtResource( 2 )]
+position = Vector2( 320, 420 )
+
+[node name="Effects" type="Node2D" parent="."]
+
+[node name="OverlayText" type="Node2D" parent="."]
+
+[node name="YouWin" type="Sprite" parent="."]
+visible = false
+position = Vector2( 320, 240 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 5 )
+
+[node name="GameGUI" parent="." instance=ExtResource( 4 )]
+script = ExtResource( 1 )
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="DayTimer" type="Timer" parent="Timers"]
+wait_time = 6.0
+autostart = true

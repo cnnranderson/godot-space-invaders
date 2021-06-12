@@ -1,6 +1,13 @@
 extends Node
 
 enum EnemyType {ALIEN, UFO}
+enum Scenes {START_MENU, HIGH_SCORES, GAME, LEVEL_SELECT}
+
+const SceneMap = {
+	Scenes.START_MENU: "res://scenes/start/StartMenu.tscn",
+	Scenes.HIGH_SCORES: "res://scenes/highscores/HighScoreMenu.tscn",
+	Scenes.GAME: "res://scenes/game/GameScene.tscn"
+}
 
 var main = null
 var debug = true

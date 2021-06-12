@@ -2,6 +2,7 @@ tool
 extends SubdivideSprite
 
 func _ready():
+	print("started")
 	EventManager.connect("daytime_change", self, "_Event_daytime_changed")
 	EventManager.connect("daytime_pause", self, "_Event_daytime_pause")
 

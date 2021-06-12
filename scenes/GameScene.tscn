@@ -1,13 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://ui/GameGUI.gd" type="Script" id=1]
 [ext_resource path="res://GameManager.gd" type="Script" id=2]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://ui/GameGUI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ui/PauseGUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/SkyBackground.tscn" type="PackedScene" id=6]
 [ext_resource path="res://images/ground.png" type="Texture" id=7]
-[ext_resource path="res://images/win.png" type="Texture" id=8]
 [ext_resource path="res://shaders/day_night_texture.shader" type="Shader" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -52,24 +48,5 @@ position = Vector2( 320, 420 )
 
 [node name="OverlayText" type="Node2D" parent="."]
 
-[node name="YouWin" type="Sprite" parent="."]
-visible = false
-position = Vector2( 320, 240 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 8 )
-
-[node name="GameGUI" parent="." instance=ExtResource( 4 )]
-script = ExtResource( 1 )
-
-[node name="PauseGUI" parent="." instance=ExtResource( 5 )]
-visible = false
-
-[node name="Timers" type="Node" parent="."]
-
-[node name="DayTimer" type="Timer" parent="Timers"]
-wait_time = 6.0
-autostart = true
-
 [connection signal="timeout" from="Enemies/FireTimer" to="." method="_on_FireTimer_timeout"]
 [connection signal="timeout" from="Enemies/UfoTimer" to="." method="_on_UfoTimer_timeout"]
-[connection signal="timeout" from="Timers/DayTimer" to="." method="_on_DayTimer_timeout"]
