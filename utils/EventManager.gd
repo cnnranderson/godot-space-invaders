@@ -14,7 +14,8 @@ signal daytime_change(time, delay)
 signal daytime_pause(should_pause)
 
 # Player signals
-signal player_died(lives)
+signal player_hurt(lives)
+signal player_lost()
 
 # Enemy signals
 signal enemy_died(type, value)

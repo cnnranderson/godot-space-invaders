@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/game/level/Level.gd"
 }, {
+"base": "Node2D",
+"class": "Main",
+"language": "GDScript",
+"path": "res://scenes/main/MainScene.gd"
+}, {
 "base": "Area2D",
 "class": "Player",
 "language": "GDScript",
@@ -38,6 +43,7 @@ _global_script_class_icons={
 "Bullet": "",
 "Enemy": "",
 "Level": "",
+"Main": "",
 "Player": "",
 "SubdivideSprite": ""
 }
@@ -65,8 +71,6 @@ window/size/width=640
 window/size/height=480
 window/size/resizable=false
 window/size/always_on_top=true
-window/size/test_width=960
-window/size/test_height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 

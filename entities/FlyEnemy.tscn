@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://images/enemy_fly.png" type="Texture" id=1]
+[ext_resource path="res://entities/FlyEnemy.gd" type="Script" id=2]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20, 20 )
+
+[node name="FlyEnemy" type="Area2D"]
+script = ExtResource( 2 )
+unique_path = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 5 )
+shape = SubResource( 1 )
+
+[connection signal="area_entered" from="." to="." method="_on_FlyEnemy_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_FlyEnemy_body_entered"]

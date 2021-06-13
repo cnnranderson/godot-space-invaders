@@ -30,7 +30,7 @@ func _on_Tween_tween_completed(object, key):
 	_tween_title()
 
 func _on_PlayButton_pressed():
-	Global.main.load_scene(Global.Scenes.GAME)
+	Global.main.load_level(Global.Levels.TEST_LEVEL)
 
 func _on_ScoreButton_pressed():
 	Global.main.load_scene(Global.Scenes.HIGH_SCORES)

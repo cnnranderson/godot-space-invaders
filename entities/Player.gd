@@ -38,13 +38,14 @@ func _handle_input(delta):
 func player_hit():
 	lives -= 1
 	SoundManager.play_sound_2d(SoundManager.SoundType.SFX, PlayerExplosionSound, position)
-	EventManager.emit_signal("player_died", lives)
+	EventManager.emit_signal("player_hurt", lives)
 	
 	if lives <= 0:
-		var _switch = get_tree().reload_current_scene()
+		EventManager.emit_signal("player_lost")
 
 # Fire a bullet
 func _fire():
+	print("Overwrite?")
 	bullet_time = bullet_wait_time
 	var bullet = _Bullet.instance()
 	bullet.source = "player"

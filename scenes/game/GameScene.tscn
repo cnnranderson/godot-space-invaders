@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/GameGUI.gd" type="Script" id=1]
-[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/FlyEnemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/TestShip.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/GameGUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://images/win.png" type="Texture" id=5]
 [ext_resource path="res://scenes/game/GameScene.gd" type="Script" id=6]
@@ -12,20 +13,24 @@ script = ExtResource( 6 )
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="Level" type="Node2D" parent="."]
 
-[node name="FireTimer" type="Timer" parent="Enemies"]
-wait_time = 4.0
-autostart = true
-
-[node name="UfoTimer" type="Timer" parent="Enemies"]
-wait_time = 10.0
-autostart = true
-
-[node name="Level" type="CanvasLayer" parent="."]
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 320, 420 )
+
+[node name="Enemies" type="CanvasLayer" parent="."]
+
+[node name="FlyEnemy4" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 542.627, 175.74 )
+
+[node name="FlyEnemy3" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 192.672, 175.982 )
+
+[node name="FlyEnemy2" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 432.715, 175.57 )
+
+[node name="FlyEnemy" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 315.174, 176.103 )
 
 [node name="Effects" type="CanvasLayer" parent="."]
 
@@ -39,3 +44,19 @@ visible = false
 position = Vector2( 320, 240 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 5 )
+
+[node name="Timers" type="CanvasLayer" parent="."]
+
+[node name="FireTimer" type="Timer" parent="Timers"]
+wait_time = 4.0
+autostart = true
+
+[node name="UfoTimer" type="Timer" parent="Timers"]
+wait_time = 10.0
+autostart = true
+
+[node name="DayTimer" type="Timer" parent="Timers"]
+wait_time = 4.0
+autostart = true
+
+[connection signal="timeout" from="Timers/DayTimer" to="." method="_on_DayTimer_timeout"]

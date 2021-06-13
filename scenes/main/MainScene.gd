@@ -1,4 +1,5 @@
 extends Node2D
+class_name Main
 
 var curr_scene = Global.Scenes.START_MENU
 var curr_level = Global.Levels.TEST_LEVEL
@@ -40,6 +41,7 @@ func load_level(level):
 	var new_scene = load(Global.SceneMap[Global.Scenes.GAME]).instance()
 	curr_level = level
 	curr_scene = Global.Scenes.GAME
+	print("Current Level chosen: %s" % curr_level)
 	$Scene.add_child(new_scene)
 	
 	# Unpause the tree to continue with the scene

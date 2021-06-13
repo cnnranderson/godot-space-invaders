@@ -32,7 +32,7 @@ func kill(gives_points):
 		var points = iFloatingText.instance()
 		points.amount = death_value
 		points.position = position
-		$"../../OverlayText".add_child(points)
+		$"../../Effects".add_child(points)
 	queue_free()
 
 func shoot():

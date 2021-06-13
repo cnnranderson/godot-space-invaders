@@ -14,10 +14,9 @@ const LevelMap = {
 	Levels.TEST_LEVEL: "res://scenes/game/level/TestLevel.tscn"
 }
 
-var main = null
+var main : Main = null
 var debug = true
-
-onready var time_of_day = 0.0;
+var time_of_day = 0.0;
 
 # TODO: Maybe move this into a game state or data manager?
 onready var high_scores = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
